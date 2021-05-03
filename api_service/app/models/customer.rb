@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Customer
   include Mongoid::Document
 
@@ -5,8 +7,8 @@ class Customer
   field :email, type: String
   field :name, type: String
 
-  has_many :contracts
+  has_many :contracts, dependent: :destroy
 
   validates :address, :email, :name, presence: true
-  validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 end

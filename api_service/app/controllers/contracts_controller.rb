@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ContractsController < ApplicationController
   before_action :set_customer
-  before_action :set_contract, only: [:show, :update, :destroy]
+  before_action :set_contract, only: %i[show update destroy]
 
   # GET /contracts
   def index
@@ -20,7 +22,7 @@ class ContractsController < ApplicationController
 
     if @contract.save
       render json: @contract, status: :created,
-        location: customer_contract_url(@contract, customer_id: @customer.id)
+             location: customer_contract_url(@contract, customer_id: @customer.id)
     else
       render json: @contract.errors, status: :unprocessable_entity
     end
@@ -41,15 +43,16 @@ class ContractsController < ApplicationController
   end
 
   private
-    def set_customer
-      @customer = Customer.find(params[:customer_id])
-    end
 
-    def set_contract
-      @contract = @customer.contracts.find(params[:id])
-    end
+  def set_customer
+    @customer = Customer.find(params[:customer_id])
+  end
 
-    def contract_params
-      params.require(:contract).permit(:price, :start_date, :end_date, :expiry_date, :customer_id)
-    end
+  def set_contract
+    @contract = @customer.contracts.find(params[:id])
+  end
+
+  def contract_params
+    params.require(:contract).permit(:price, :start_date, :end_date, :expiry_date, :customer_id)
+  end
 end
