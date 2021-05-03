@@ -5,6 +5,8 @@ class Customer
   field :email, type: String
   field :name, type: String
 
+  has_many :contracts
+
   validates :address, :email, :name, presence: true
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
 end
