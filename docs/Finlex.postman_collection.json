@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "951cf01a-c782-45d5-a260-998b9a478eda",
+		"name": "Finlex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Contracts",
+			"item": [
+				{
+					"name": "Create contract",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"contract_id\", jsonData._id.$oid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contract\": {\n        \"price\": 200.50,\n        \"start_date\": \"2020-01-01\",\n        \"end_date\": \"2022-12-31\",\n        \"expiry_date\": \"2022-12-31\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers/{{customer_id}}/contracts",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers",
+								"{{customer_id}}",
+								"contracts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index contract",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers/{{customer_id}}/contracts",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers",
+								"{{customer_id}}",
+								"contracts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contracts\": [\n        {\n            \"price\": 6666,\n            \"start_date\": \"2020-01-01\",\n            \"end_date\": \"2022-12-31\",\n            \"expiry_date\": \"2022-12-31\",\n            \"customer_id\": \"{{customer_id}}\"\n        },\n        {\n            \"price\": 300,\n            \"start_date\": \"2020-01-01\",\n            \"end_date\": \"2022-12-31\",\n            \"expiry_date\": \"2022-12-31\",\n            \"customer_id\": \"{{customer_id}}\"\n        },\n        {\n            \"price\": 400,\n            \"start_date\": \"2020-01-01\",\n            \"end_date\": \"2022-12-31\",\n            \"expiry_date\": \"2022-12-31\",\n            \"customer_id\": \"{{customer_id}}\"\n        }\n    ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/contracts",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"contracts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show contrat",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers/{{customer_id}}/contracts/{{contract_id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers",
+								"{{customer_id}}",
+								"contracts",
+								"{{contract_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete contract",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers/{{customer_id}}/contracts/{{contract_id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers",
+								"{{customer_id}}",
+								"contracts",
+								"{{contract_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit contract",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"contract_id\", jsonData._id.$oid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contract\": {\n        \"price\": 222222222200.50,\n        \"start_date\": \"2020-01-01\",\n        \"end_date\": \"2022-12-31\",\n        \"expiry_date\": \"2022-12-31\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers/{{customer_id}}/contracts/{{contract_id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers",
+								"{{customer_id}}",
+								"contracts",
+								"{{contract_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"customer_id\", jsonData._id.$oid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer\": {\n        \"name\": \"New customer\",\n        \"address\": \"2and Street, NY\",\n        \"email\": \"john@doe.com\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"customer_id\", jsonData._id.$oid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers/{{customer_id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers",
+								"{{customer_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"customer_id\", jsonData._id.$oid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer\": {\n        \"name\": \"Try\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers/{{customer_id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers",
+								"{{customer_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"customer_id\", jsonData._id.$oid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer\": {\n        \"name\": \"New customer\",\n        \"address\": \"2and Street, NY\",\n        \"email\": \"john@doe.com\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers/{{customer_id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers",
+								"{{customer_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"customer_id\", jsonData._id.$oid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/customers",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
