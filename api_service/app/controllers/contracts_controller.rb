@@ -6,7 +6,7 @@ class ContractsController < ApplicationController
 
   # GET /customers/1/contracts
   def index
-    @contracts = Contract.all
+    @contracts = @customer.contracts.all
 
     render json: @contracts
   end

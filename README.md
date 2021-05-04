@@ -1,7 +1,8 @@
-# Backend Projects
-==========
+# Contracts management API
 
 - [Set up development environment with Docker](#set-up-development-environment-with-docker)
+- [Running tests](#running-tests)
+- [Postman collection](#postman-collection)
 
 ## Set up development environment with Docker
 
@@ -28,3 +29,12 @@ docker-compose build
 ```bash
 docker-compose up
 ```
+
+## Running tests
+
+```bash
+docker-compose run web rspec
+```
+
+## Postman collection
+Downlaod and import the postman collection under the docs folder. It includes all the requests available in the api. The BASE_URL needs to be set for Postman. If no port is changed, it should be set as `localhost:3000`.
