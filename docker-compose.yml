@@ -19,3 +19,11 @@ services:
       - 3000:3000
     depends_on:
       - mongo
+  worker:
+    build: ./api_service
+    command: rake jobs:work
+    volumes:
+      - ./api_service:/api_service
+    tty: true
+    depends_on:
+      - mongo

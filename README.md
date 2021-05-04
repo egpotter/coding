@@ -8,7 +8,6 @@
 ### Prerequisites
 - Git - [Download & Install Git](https://git-scm.com/downloads)
 - Docker - [Download & Install Docker](https://docs.docker.com/get-docker/)
-- Docker-compose [Download & install docker-compose](https://docs.docker.com/compose/install/)
 
 ### Usage
 #### 1 - Clone the repository to your local machine.

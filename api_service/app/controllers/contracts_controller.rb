@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 class ContractsController < ApplicationController
-  before_action :set_customer
+  before_action :set_customer, except: %i[bulk_create]
   before_action :set_contract, only: %i[show update destroy]
 
-  # GET /contracts
+  # GET /customers/1/contracts
   def index
     @contracts = Contract.all
 
     render json: @contracts
   end
 
-  # GET /contracts/1
+  # GET /customers/1/contracts/2
   def show
     render json: @contract
   end
 
-  # POST /contracts
+  # POST /customers/1/contracts
   def create
     @contract = @customer.contracts.new(contract_params)
 
@@ -28,7 +28,7 @@ class ContractsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /contracts/1
+  # PATCH/PUT /customers/1/contracts/2
   def update
     if @contract.update(contract_params)
       render json: @contract
@@ -37,9 +37,17 @@ class ContractsController < ApplicationController
     end
   end
 
-  # DELETE /contracts/1
+  # DELETE /customers/1/contracts/2
   def destroy
     @contract.destroy
+  end
+
+  # POST /contracts
+  def bulk_create
+    bulk_params.to_h[:contracts].each do |contract|
+      Contract.delay.create(contract)
+    end
+    render json: {success: true}
   end
 
   private
@@ -53,6 +61,10 @@ class ContractsController < ApplicationController
   end
 
   def contract_params
-    params.require(:contract).permit(:price, :start_date, :end_date, :expiry_date, :customer_id)
+    params.require(:contract).permit(:price, :start_date, :end_date, :expiry_date)
+  end
+
+  def bulk_params
+    params.permit(contracts: [:price, :start_date, :end_date, :expiry_date, :customer_id])
   end
 end
